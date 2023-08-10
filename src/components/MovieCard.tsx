@@ -1,22 +1,21 @@
-// src/components/MovieCard.tsx
 import React from 'react';
-import { Movie } from '../types'; // Import Movie type
+import { Movie } from '../types';
 
 interface MovieCardProps {
   movie: Movie;
-  onLike: () => void;
-  onDislike: () => void;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, onLike, onDislike }) => {
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+
+const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   return (
-    <div className="movie-card">
-      <img src={movie.posterUrl} alt={movie.title} />
+    <div>
+      <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
       <h2>{movie.title}</h2>
-      <button onClick={onLike}>Like</button>
-      <button onClick={onDislike}>Dislike</button>
+      <p>{movie.overview}</p>
     </div>
   );
 };
 
 export default MovieCard;
+

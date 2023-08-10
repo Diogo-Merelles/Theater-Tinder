@@ -1,50 +1,42 @@
-// src/contexts/MovieContext.tsx
 import React, { createContext, useContext, useState } from 'react';
-import { Movie } from '../types'; // Import Movie type
+import { Movie } from '../types';
 
-interface MovieContextProps {
-  children: React.ReactNode;
+interface MoviesContextProps {
+  favorites: Movie[];
+  wallOfShame: Movie[];
+  addFavorite: (movie: Movie) => void;
+  addToWallOfShame: (movie: Movie) => void;
 }
 
-interface MovieContextType {
-  likedMovies: Movie[];
-  dislikedMovies: Movie[];
-  addLikedMovie: (movie: Movie) => void;
-  addDislikedMovie: (movie: Movie) => void;
-}
-
-const MovieContext = createContext<MovieContextType | undefined>(undefined);
-
-export const useMovieContext = () => {
-  const context = useContext(MovieContext);
-  if (!context) {
-    throw new Error('useMovieContext must be used within a MovieProvider');
+interface MoviesProviderProps {
+    children: React.ReactNode; // This is the type for children in a React component.
   }
-  return context;
-};
 
-const MovieProvider: React.FC<MovieContextProps> = ({ children }) => {
-  const [likedMovies, setLikedMovies] = useState<Movie[]>([]);
-  const [dislikedMovies, setDislikedMovies] = useState<Movie[]>([]);
+const MoviesContext = createContext<MoviesContextProps | undefined>(undefined);
 
-  const addLikedMovie = (movie: Movie) => {
-    setLikedMovies([...likedMovies, movie]);
+export const MoviesProvider: React.FC<MoviesProviderProps> = ({ children }) => {
+  const [favorites, setFavorites] = useState<Movie[]>([]);
+  const [wallOfShame, setWallOfShame] = useState<Movie[]>([]);
+
+  const addFavorite = (movie: Movie) => {
+    setFavorites([...favorites, movie]);
   };
 
-  const addDislikedMovie = (movie: Movie) => {
-    setDislikedMovies([...dislikedMovies, movie]);
-  };
-
-  const contextValue: MovieContextType = {
-    likedMovies,
-    dislikedMovies,
-    addLikedMovie,
-    addDislikedMovie,
+  const addToWallOfShame = (movie: Movie) => {
+    setWallOfShame([...wallOfShame, movie]);
   };
 
   return (
-    <MovieContext.Provider value={contextValue}>{children}</MovieContext.Provider>
+    <MoviesContext.Provider value={{ favorites, wallOfShame, addFavorite, addToWallOfShame }}>
+      {children}
+    </MoviesContext.Provider>
   );
 };
 
-export default MovieProvider;
+export const useMovies = (): MoviesContextProps => {
+  const context = useContext(MoviesContext);
+  if (!context) {
+    throw new Error("useMovies must be used within a MoviesProvider");
+  }
+  return context;
+};

@@ -1,26 +1,22 @@
-// src/App.tsx
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import MovieProvider  from './context/MovieContext';
-import MovieWall from './pages/MovieWall';
-import Favorites from './pages/Favorites';
-import WallOfShame from './pages/WallOfShame';
-import SearchMovie from './pages/SearchMovie';
-import './App.css'; 
+import { Routes, Route } from 'react-router-dom';
+import { MoviesProvider } from './context/MovieContext';
+import MovieWall from './views/MovieWall';
+import Favorites from './views/Favorites';
+import WallOfShame from './views/WallOfShame';
+import SearchMovie from './views/SearchMovie';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <MovieProvider>
-      <Router>
-        <Routes>
-          <Route path="/" Component={MovieWall} />
-          <Route path="/favorites" Component={Favorites} />
-          <Route path="/wall-of-shame" Component={WallOfShame} />
-          <Route path="/search-results" Component={SearchMovie} />
-        </Routes>
-      </Router>
-    </MovieProvider>
+    <MoviesProvider>
+      <Routes>
+          <Route path="/"  element={<MovieWall/>} />
+          <Route path="/favorites" element={<Favorites/>} />
+          <Route path="/wall-of-shame" element={<WallOfShame/>} />
+          <Route path="/search" element={<SearchMovie/>} />
+      </Routes>
+    </MoviesProvider>
   );
-}
+};
 
 export default App;
