@@ -1,24 +1,18 @@
+// src/components/SwipeButtons.tsx
 import React from 'react';
-import styled from 'styled-components';
 
 interface SwipeButtonsProps {
   onLike: () => void;
   onDislike: () => void;
 }
 
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-`;
-
-const LikeButtons: React.FC<SwipeButtonsProps> = ({ onLike, onDislike }) => {
+const SwipeButtons: React.FC<SwipeButtonsProps> = ({ onLike, onDislike }) => {
   return (
-    <ButtonContainer>
+    <div className="swipe-buttons">
       <button onClick={onDislike}>Dislike</button>
       <button onClick={onLike}>Like</button>
-    </ButtonContainer>
+    </div>
   );
 };
 
-export default LikeButtons;
+export default SwipeButtons;

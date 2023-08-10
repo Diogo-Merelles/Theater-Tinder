@@ -1,10 +1,9 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+// src/contexts/MovieContext.tsx
+import React, { createContext, useContext, useState } from 'react';
+import { Movie } from '../types'; // Import Movie type
 
-interface Movie {
-  id: number;
-  title: string;
-  overview: string;
-  poster_path: string;
+interface MovieContextProps {
+  children: React.ReactNode;
 }
 
 interface MovieContextType {
@@ -16,36 +15,36 @@ interface MovieContextType {
 
 const MovieContext = createContext<MovieContextType | undefined>(undefined);
 
-interface MovieProviderProps {
-  children: ReactNode;
-}
+export const useMovieContext = () => {
+  const context = useContext(MovieContext);
+  if (!context) {
+    throw new Error('useMovieContext must be used within a MovieProvider');
+  }
+  return context;
+};
 
-export const MovieProvider = ({ children }: MovieProviderProps) => {
+const MovieProvider: React.FC<MovieContextProps> = ({ children }) => {
   const [likedMovies, setLikedMovies] = useState<Movie[]>([]);
   const [dislikedMovies, setDislikedMovies] = useState<Movie[]>([]);
 
   const addLikedMovie = (movie: Movie) => {
-    setLikedMovies((prevLikedMovies) => [...prevLikedMovies, movie]);
+    setLikedMovies([...likedMovies, movie]);
   };
 
   const addDislikedMovie = (movie: Movie) => {
-    setDislikedMovies((prevDislikedMovies) => [...prevDislikedMovies, movie]);
+    setDislikedMovies([...dislikedMovies, movie]);
   };
 
-  const value: MovieContextType = {
+  const contextValue: MovieContextType = {
     likedMovies,
     dislikedMovies,
     addLikedMovie,
     addDislikedMovie,
   };
 
-  return <MovieContext.Provider value={value}>{children}</MovieContext.Provider>;
+  return (
+    <MovieContext.Provider value={contextValue}>{children}</MovieContext.Provider>
+  );
 };
 
-export const useMovieContext = () => {
-  const context = useContext(MovieContext);
-  if (context === undefined) {
-    throw new Error('useMovieContext must be used within a MovieProvider');
-  }
-  return context;
-};
+export default MovieProvider;

@@ -1,14 +1,19 @@
+// src/pages/Favorites.tsx
 import React from 'react';
 import { useMovieContext } from '../context/MovieContext';
-import MovieList from '../components/MovieList';
+import { Movie } from '../types'; // Import Movie type
 
 const Favorites: React.FC = () => {
   const { likedMovies } = useMovieContext();
 
   return (
-    <div>
-      <h1>Favorites</h1>
-      <MovieList movies={likedMovies} />
+    <div className="favorites">
+      <h2>Favorites</h2>
+      <ul>
+        {likedMovies.map((movie) => (
+          <li key={movie.id}>{movie.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };

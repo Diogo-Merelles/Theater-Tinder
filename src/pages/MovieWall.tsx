@@ -1,36 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { fetchRandomMovie } from '../services/api';
+// src/pages/MovieWall.tsx
+import React, { useState } from 'react';
 import { useMovieContext } from '../context/MovieContext';
 import MovieCard from '../components/MovieCard';
 import LikeButtons from '../components/LikeButtons';
+import { fetchRandomMovie } from '../services/api';
+import { Movie } from '../types'; // Import Movie type
 
-interface Movie {
-    id: number;
-    title: string;
-    overview: string;
-    poster_path: string;
-  }
-  
 const MovieWall: React.FC = () => {
-  const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
   const { addLikedMovie, addDislikedMovie } = useMovieContext();
-
-  useEffect(() => {
-    fetchNextMovie();
-  }, []);
+  const [currentMovie, setCurrentMovie] = useState<Movie | null>(null);
 
   const handleLike = () => {
     if (currentMovie) {
       addLikedMovie(currentMovie);
-      fetchNextMovie();
     }
+    fetchNextMovie();
   };
 
   const handleDislike = () => {
     if (currentMovie) {
       addDislikedMovie(currentMovie);
-      fetchNextMovie();
     }
+    fetchNextMovie();
   };
 
   const fetchNextMovie = async () => {
@@ -39,15 +30,12 @@ const MovieWall: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Movie Wall</h1>
-      {currentMovie ? (
-        <div>
+    <div className="movie-wall">
+      {currentMovie && (
+        <>
           <MovieCard movie={currentMovie} onLike={handleLike} onDislike={handleDislike} />
           <LikeButtons onLike={handleLike} onDislike={handleDislike} />
-        </div>
-      ) : (
-        <p>Loading...</p>
+        </>
       )}
     </div>
   );
