@@ -4,7 +4,7 @@ const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = 'af2fff72d2853697571a81a37b1bd0fc'; 
 
 export const fetchRandomMovie = async () => {
-    const totalPages = 10; // Number of pages to fetch
+    const totalPages = 10;
   
     const allMovies = [];
   

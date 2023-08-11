@@ -5,14 +5,16 @@ import MovieWall from './views/MovieWall';
 import Favorites from './views/Favorites';
 import WallOfShame from './views/WallOfShame';
 import SearchMovie from './views/SearchMovie';
+import Navbar from './components/NavBar';
 
 const App: React.FC = () => {
   return (
     <MoviesProvider>
+      <Navbar/>
       <Routes>
           <Route path="/"  element={<MovieWall/>} />
           <Route path="/favorites" element={<Favorites/>} />
-          <Route path="/wall-of-shame" element={<WallOfShame/>} />
+          <Route path="/wallofshame" element={<WallOfShame/>} />
           <Route path="/search" element={<SearchMovie/>} />
       </Routes>
     </MoviesProvider>
