@@ -1,6 +1,8 @@
 import React from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Movie } from '../types';
+import { useSwipeable } from 'react-swipeable';
+import { useMovies } from '../context/MovieContext';
 
 interface MovieCardProps {
   movie: Movie;
@@ -10,7 +12,6 @@ interface MovieCardProps {
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
-// Fade-in animation
 const fadeInAnimation = keyframes`
   from {
     opacity: 0;
@@ -42,7 +43,7 @@ const MovieTitle = styled.h2`
 `;
 
 const MovieOverview = styled.p`
-   font-size: 0.9rem;
+  font-size: 0.9rem;
   max-height: 80px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -69,13 +70,23 @@ const TransferButton = styled.button`
 `;
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, onTransfer, transferLabel }) => {
+  const { addFavorite, addToWallOfShame } = useMovies();
+
+  const handlers = useSwipeable({
+    onSwipedRight: () => addToWallOfShame(movie),
+    onSwipedLeft: () => addFavorite(movie),
+    trackMouse: true
+  });
+
   return (
-    <CardContainer>
-      <MovieImage height="700px" src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
-      <MovieTitle>{movie.title}</MovieTitle>
-      <MovieOverview>{movie.overview}</MovieOverview>
-      {onTransfer && transferLabel && <TransferButton onClick={onTransfer}>{transferLabel}</TransferButton>}
-    </CardContainer>
+    <div {...handlers}>
+      <CardContainer>
+        <MovieImage height="700px" src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+        <MovieTitle>{movie.title}</MovieTitle>
+        <MovieOverview>{movie.overview}</MovieOverview>
+        {onTransfer && transferLabel && <TransferButton onClick={onTransfer}>{transferLabel}</TransferButton>}
+      </CardContainer>
+    </div>
   );
 };
 
