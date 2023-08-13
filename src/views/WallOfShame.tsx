@@ -1,16 +1,28 @@
+// WallOfShame.tsx
+
 import React from 'react';
 import { useMovies } from '../context/MovieContext';
 import MovieCard from '../components/MovieCard';
 
 const WallOfShame: React.FC = () => {
-  const { wallOfShame } = useMovies();
+  const { wallOfShame, addFavorite, removeFromWallOfShame } = useMovies();
 
   return (
     <div>
-      {wallOfShame.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+      {wallOfShame.map(movie => (
+        <div key={movie.id}>
+          <MovieCard 
+            movie={movie} 
+            onTransfer={() => {
+              addFavorite(movie);
+              removeFromWallOfShame(movie.id);
+            }}
+          />
+          <button onClick={() => removeFromWallOfShame(movie.id)}>Remove from Wall of Shame</button>
+        </div>
+      ))}
     </div>
   );
 };
 
 export default WallOfShame;
-
