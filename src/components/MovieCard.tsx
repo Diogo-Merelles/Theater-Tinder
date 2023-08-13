@@ -58,6 +58,7 @@ const TransferButton = styled.button`
   padding: 10px 20px;
   cursor: pointer;
   margin: 1rem 0;
+  width: 220px;
   transition: background-color 0.3s ease, transform 0.3s, box-shadow 0.3s;
   
   &:hover {

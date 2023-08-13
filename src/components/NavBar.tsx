@@ -42,7 +42,7 @@ const AppNameLink = styled(StyledLink)`
 const Navbar: React.FC = () => {
   return (
     <NavContainer>
-      <AppNameLink to="/">Theater-Tinder</AppNameLink>
+      <AppNameLink to="/">THEATER-TINDER</AppNameLink>
       <NavItems>
         <StyledLink to="/favorites">Favorites</StyledLink>
         <StyledLink to="/wallofshame">Wall of Shame</StyledLink>
