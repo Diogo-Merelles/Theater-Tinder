@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMovies } from '../context/MovieContext';
 import MovieCard from '../components/MovieCard';
+import { RemoveButton } from '../Styles/RemoveButton';
 
 const WallOfShame: React.FC = () => {
   const { wallOfShame, addFavorite, removeFromWallOfShame } = useMovies();
@@ -17,7 +18,7 @@ const WallOfShame: React.FC = () => {
             }}
             transferLabel="Transfer to Favorites"
           />
-          <button onClick={() => removeFromWallOfShame(movie.id)}>Remove from Wall of Shame</button>
+          <RemoveButton onClick={() => removeFromWallOfShame(movie.id)}>Remove from Wall of Shame</RemoveButton>
         </div>
       ))}
     </div>

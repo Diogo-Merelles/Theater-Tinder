@@ -6,10 +6,12 @@ import Favorites from './views/Favorites';
 import WallOfShame from './views/WallOfShame';
 import SearchMovie from './views/SearchMovie';
 import Navbar from './components/NavBar';
+import { GlobalStyle } from './Styles/GlobalStyles';
 
 const App: React.FC = () => {
   return (
     <MoviesProvider>
+      <GlobalStyle />
       <Navbar/>
       <Routes>
           <Route path="/"  element={<MovieWall/>} />

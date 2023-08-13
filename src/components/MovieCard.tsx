@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Movie } from '../types';
 
 interface MovieCardProps {
@@ -9,16 +10,59 @@ interface MovieCardProps {
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
+const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  margin: 1rem;
+`;
+
+const MovieImage = styled.img`
+  max-width: 100%;
+  border-radius: 8px;
+`;
+
+const MovieTitle = styled.h2`
+  color: #005fa3; 
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  text-align: center;
+`;
+
+const MovieOverview = styled.p`
+   font-size: 0.9rem;
+  max-height: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.5rem;
+  text-align: center;
+`;
+
+const TransferButton = styled.button`
+  background-color: #0077cc; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 1rem 0;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: #005fa3;
+  }
+`;
+
 const MovieCard: React.FC<MovieCardProps> = ({ movie, onTransfer, transferLabel }) => {
   return (
-    <div>
-      <img src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
-      <h2>{movie.title}</h2>
-      <p>{movie.overview}</p>
-      {onTransfer && transferLabel && <button onClick={onTransfer}>{transferLabel}</button>} 
-    </div>
+    <CardContainer>
+      <MovieImage height="700px" src={`${IMAGE_BASE_URL}${movie.poster_path}`} alt={movie.title} />
+      <MovieTitle>{movie.title}</MovieTitle>
+      <MovieOverview>{movie.overview}</MovieOverview>
+      {onTransfer && transferLabel && <TransferButton onClick={onTransfer}>{transferLabel}</TransferButton>}
+    </CardContainer>
   );
 };
 
 export default MovieCard;
-
