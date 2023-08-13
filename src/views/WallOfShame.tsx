@@ -1,5 +1,3 @@
-// WallOfShame.tsx
-
 import React from 'react';
 import { useMovies } from '../context/MovieContext';
 import MovieCard from '../components/MovieCard';
@@ -17,6 +15,7 @@ const WallOfShame: React.FC = () => {
               addFavorite(movie);
               removeFromWallOfShame(movie.id);
             }}
+            transferLabel="Transfer to Favorites"
           />
           <button onClick={() => removeFromWallOfShame(movie.id)}>Remove from Wall of Shame</button>
         </div>
