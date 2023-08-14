@@ -14,7 +14,7 @@ Movie Match App is a simple yet powerful application that lets users search for 
 
 - `/favorites`: Get all movies that the user has added to their favorites.
 
-- `/wall-of-shame`: Get all movies that the user has added to their "Wall of Shame".
+- `/wallofshame`: Get all movies that the user has added to their "Wall of Shame".
 
 ## Getting Started
 
