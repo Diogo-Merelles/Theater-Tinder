@@ -1,4 +1,4 @@
-# Movie Match App 🎬
+# Theater-Tinder 🎬
 
 Movie Match App is a simple yet powerful application that lets users search for their favorite movies, view details, and categorize them. Inspired by Tinder, users can swipe left to add a movie to their favorites or swipe right to add it to the "Wall of Shame". It's an exciting and interactive way to manage and discover movies!
 
@@ -18,7 +18,7 @@ Movie Match App is a simple yet powerful application that lets users search for 
 
 ## Getting Started
 
-1. **Clone the repository**: git clone https://github.com/your-username/movie-match-app.git
+1. **Clone the repository**: git clone https://github.com/your-username/Theater-Tinder.git
 2. **Install dependencies: npm install
 3. **Run the app: npm start
 4. **Open a browser and navigate to `http://localhost:3000`.
