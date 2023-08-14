@@ -18,7 +18,7 @@ Movie Match App is a simple yet powerful application that lets users search for 
 
 ## Getting Started
 
-1. **Clone the repository**: git clone https://github.com/your-username/Theater-Tinder.git
+1. **Clone the repository**: git clone https://github.com/Diogo-Merelles/Theater-Tinder
 2. **Install dependencies: npm install
 3. **Run the app: npm start
 4. **Open a browser and navigate to `http://localhost:3000`.
