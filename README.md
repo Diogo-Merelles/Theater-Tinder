@@ -1,6 +1,6 @@
 # Theater-Tinder 🎬
 
-Movie Match App is a simple yet powerful application that lets users search for their favorite movies, view details, and categorize them. Inspired by Tinder, users can swipe left to add a movie to their favorites or swipe right to add it to the "Wall of Shame". It's an exciting and interactive way to manage and discover movies!
+Theater-Tinder App is a simple yet powerful application that lets users search for their favorite movies, view details, and categorize them. Inspired by Tinder, users can swipe left to add a movie to their favorites or swipe right to add it to the "Wall of Shame". It's an exciting and interactive way to manage and discover movies!
 
 ## Features
 
